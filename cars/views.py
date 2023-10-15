@@ -22,3 +22,33 @@ def car_details(request, id):
         'single_car': single_car
     }
     return render(request, 'cars/car_details.html', data) # this is the car detail page inside templates/cars/car_details.html
+
+def search(request):
+
+    cars = Car.objects.order_by('-created_date')
+    
+    if 'keyword' in request.GET:
+        keyword = request.GET['keyword']
+        if keyword:
+            cars = cars.filter(description__icontains=keyword)
+
+    if 'city' in request.GET:
+        city = request.GET['city']
+        if city:
+            cars = cars.filter(city__iexact=city)
+
+    if 'year' in request.GET:
+        year = request.GET['year']
+        if year:
+            cars = cars.filter(year__iexact=year)
+
+    if 'body_type' in request.GET:
+        body_type = request.GET['body_type']
+        if body_type:
+            cars = cars.filter(body_type__iexact=body_type)
+
+    data = {
+        'cars': cars,
+    }
+
+    return render(request, 'cars/search.html', data) # this is the search page inside templates/cars/search.html
