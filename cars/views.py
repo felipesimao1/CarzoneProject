@@ -1,6 +1,6 @@
-from django.shortcuts import get_object_or_404, render
-from .models import Car
+from django.shortcuts import get_object_or_404, render 
 from django.core.paginator import Paginator
+from .models import Car
 
 # Create your views here.
 
@@ -9,9 +9,19 @@ def cars(request):
     paginator = Paginator(cars, 4) # Show 4 cars per page.
     page = request.GET.get('page') # this is the page number
     page_cars = paginator.get_page(page) # this is the page number
-    data = {
-        'cars': page_cars # this is the cars variable
 
+    car_title_search = Car.objects.values('car_title').distinct() # get all the objects from the Car model and values of the car_title field
+    city_search = Car.objects.values('city').distinct() # get all the objects from the Car model and values of the city field
+    year_search = Car.objects.values('year').distinct() # get all the objects from the Car model and values of the year field
+    body_type_search = Car.objects.values('body_type').distinct() # get all the objects from the Car model and values of the body_type field
+
+
+    data = {
+        'cars': page_cars, # this is the cars variable
+        'car_title_search': car_title_search,
+        'city_search': city_search,
+        'year_search': year_search,
+        'body_type_search': body_type_search,
     }
     return render(request, 'cars/cars.html', data) # this is the home page of cars app inside templates/cars/cars.html
 
@@ -26,6 +36,11 @@ def car_details(request, id):
 def search(request):
 
     cars = Car.objects.order_by('-created_date')
+
+    car_title_search = Car.objects.values('car_title').distinct() # get all the objects from the Car model and values of the car_title field
+    city_search = Car.objects.values('city').distinct() # get all the objects from the Car model and values of the city field
+    year_search = Car.objects.values('year').distinct() # get all the objects from the Car model and values of the year field
+    body_type_search = Car.objects.values('body_type').distinct() # get all the objects from the Car model and values of the body_type field
     
     if 'keyword' in request.GET:
         keyword = request.GET['keyword']
@@ -47,8 +62,19 @@ def search(request):
         if body_type:
             cars = cars.filter(body_type__iexact=body_type)
 
+
+    if 'min_price' in request.GET:
+        min_price = request.GET['min_price']
+        max_price = request.GET['max_price']
+        if max_price:
+            cars = cars.filter(price__gte=min_price, price__lte=max_price)
+
     data = {
         'cars': cars,
+        'car_title_search': car_title_search,
+        'city_search': city_search,
+        'year_search': year_search,
+        'body_type_search': body_type_search,
     }
 
     return render(request, 'cars/search.html', data) # this is the search page inside templates/cars/search.html
