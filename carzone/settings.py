@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-fnde*5-ms2#^aea*#$n1*a96e5nla_)!xlsu%@ar!mwpp6rb35
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1']
 
 
 # Application definition
@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'carzone.wsgi.application'
 
 
 # Database
-# https://docs.djangoproject.com/en/4.2/ref/settings/#databases
+# https://docs.djangoproject.com/en/4.2/ref/settings/#databasess
 
 
 DATABASES = {
