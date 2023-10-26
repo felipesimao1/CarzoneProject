@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-fnde*5-ms2#^aea*#$n1*a96e5nla_)!xlsu%@ar!mwpp6rb35
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['carzone-felipe.herokuapp.com']
 
 
 # Application definition
@@ -84,12 +84,12 @@ WSGI_APPLICATION = 'carzone.wsgi.application'
 
 DATABASES = {
    'default': {
-       'ENGINE': 'django.db.backends.postgresql',
+       'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'carzone_db',
         'USER': 'postgres',
         'PASSWORD': 'admin',
         'HOST': 'localhost',
-        'PORT': '8001',
+        'PORT': '5432',
     }
 }
 
