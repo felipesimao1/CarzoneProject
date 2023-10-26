@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-fnde*5-ms2#^aea*#$n1*a96e5nla_)!xlsu%@ar!mwpp6rb35
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['carzone-felipe.herokuapp.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -89,7 +89,7 @@ DATABASES = {
         'USER': 'postgres',
         'PASSWORD': 'admin',
         'HOST': 'localhost',
-        'PORT': '54333',
+        'PORT': '5432',
     }
 }
 
