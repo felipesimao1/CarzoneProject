@@ -82,19 +82,19 @@ WSGI_APPLICATION = 'carzone.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databasess
 
 
-DATABASES = {
-   'default': {
-       'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'carzone_db',
-        'USER': 'postgres',
-        'PASSWORD': 'admin',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
-}
+#DATABASES = {
+#   'default': {
+#       'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': 'carzone_db',
+#        'USER': 'postgres',
+#        'PASSWORD': 'admin',
+#        'HOST': 'localhost',
+#        'PORT': '5432',
+#    }
+#}
 
 
-#DATABASES = {'default': dj_database_url.config(default='postgresql://postgresql:admin@localhost/carzone_db')}
+DATABASES = {'default': dj_database_url.config(default='postgresql://postgresql:admin@localhost/carzone_db')}
 
 
 # Password validation
